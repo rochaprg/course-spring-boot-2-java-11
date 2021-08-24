@@ -12,16 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable{
-	
-
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private  Long id;
+	
+	@JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant moment;
 	
 	@ManyToOne
@@ -65,7 +67,7 @@ public class Order implements Serializable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(client, id, moment);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -77,8 +79,7 @@ public class Order implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Order other = (Order) obj;
-		return Objects.equals(client, other.client) && Objects.equals(id, other.id)
-				&& Objects.equals(moment, other.moment);
+		return Objects.equals(id, other.id);
 	}
 	
 	
