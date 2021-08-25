@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.paulorocha.course.entity.Category;
 import com.paulorocha.course.entity.Order;
+import com.paulorocha.course.entity.OrderItem;
 import com.paulorocha.course.entity.Product;
 import com.paulorocha.course.entity.User;
 import com.paulorocha.course.entity.enums.OrderStatus;
 import com.paulorocha.course.repositories.CategoryRepository;
+import com.paulorocha.course.repositories.OrderItemRepository;
 import com.paulorocha.course.repositories.OrderRepository;
 import com.paulorocha.course.repositories.ProductRepository;
 import com.paulorocha.course.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -59,6 +64,11 @@ public class TestConfig implements CommandLineRunner {
 		p4.getCategories().add(cat3);
 		p5.getCategories().add(cat2);
 		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
 		
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		
@@ -67,6 +77,8 @@ public class TestConfig implements CommandLineRunner {
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2,cat3));
 		
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
 	}
 
