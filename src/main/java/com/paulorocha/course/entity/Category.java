@@ -1,12 +1,16 @@
 package com.paulorocha.course.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +23,16 @@ public class Category implements Serializable{
 	private Long id;
 	private String name;
 	
+	@OneToMany(mappedBy = "category")
+	private Set<Product> products = new HashSet<>();
+	
+
+
 	public Category () {
 		
 	}
 
 	public Category(Long id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
@@ -43,6 +51,10 @@ public class Category implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Set<Product> getProducts() {
+		return products;
 	}
 
 	@Override
