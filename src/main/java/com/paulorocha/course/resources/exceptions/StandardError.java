@@ -13,6 +13,7 @@ public class StandardError implements Serializable {
 	private Instant timestamp;
 	private Integer status;
 	private String error;
+	private String reason;
 	private String message;
 	private String path;
 	
@@ -20,7 +21,7 @@ public class StandardError implements Serializable {
 		
 	}
 
-	public StandardError(Instant timestamp, Integer status, String error, String message, String path) {
+	public StandardError(Instant timestamp, Integer status, String error,String reason, String message, String path) {
 		super();
 		this.timestamp = timestamp;
 		this.status = status;
@@ -51,6 +52,15 @@ public class StandardError implements Serializable {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public String getMessage() {

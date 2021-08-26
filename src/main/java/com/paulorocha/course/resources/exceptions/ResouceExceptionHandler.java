@@ -19,7 +19,7 @@ public class ResouceExceptionHandler {
 	public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
 		String error = "Resource not found";
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(),
+		StandardError err = new StandardError(Instant.now(), status.value(), error, error, e.getMessage(),
 				request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
@@ -28,7 +28,7 @@ public class ResouceExceptionHandler {
 	public ResponseEntity<StandardError> database (DatabaseException e, HttpServletRequest request){
 		String error = "Database error";
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(),
+		StandardError err = new StandardError(Instant.now(), status.value(), error,error, e.getMessage(),
 				request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
